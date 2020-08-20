@@ -1,0 +1,21 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "release_helper"
+dist-name = "release-helper"
+author = "Pradyun Gedam"
+author-email = "mail@pradyunsg.me"
+home-page = "https://github.com/pradyunsg/release-helper"
+description-file = "README.md"
+requires-python = ">=3.5"
+requires = ["click", "packaging"]
+
+[tool.flit.metadata.requires-extra]
+test = [
+  "pytest",
+  "pytest-cov",
+  "pytest-xdist",
+]
+docs = ["sphinx"]
