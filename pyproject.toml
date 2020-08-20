@@ -19,3 +19,6 @@ test = [
   "pytest-xdist",
 ]
 docs = ["sphinx"]
+
+[tool.flit.scripts]
+release-helper = "release_helper.__main__:main"
