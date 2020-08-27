@@ -1,14 +1,4 @@
-from click.testing import CliRunner
-from pytest import fixture
-
 from release_helper.commands.version_bump import cmd
-
-
-@fixture(scope="function")
-def runner():
-    value = CliRunner(mix_stderr=False)
-    with value.isolated_filesystem():
-        yield value
 
 
 def test_with_python_file(runner):
