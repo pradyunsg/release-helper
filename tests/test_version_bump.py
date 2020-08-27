@@ -3,10 +3,9 @@ from release_helper.commands.version_bump import cmd
 
 def test_with_python_file(runner):
     with open("foo.py", "w") as f:
-        f.writelines([
-            '"""String!"""\n',
-            '__version__ = "1.0.0"\n',
-        ])
+        f.writelines(
+            ['"""String!"""\n', '__version__ = "1.0.0"\n',]
+        )
     result = runner.invoke(cmd, ["foo.py", "1.1.0"])
 
     print(result.stdout)
