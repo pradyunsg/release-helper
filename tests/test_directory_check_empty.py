@@ -42,9 +42,11 @@ def test_with_non_empty_with_one_file(runner):
     assert result.stderr == "folder is not empty.\n"
 
 
-def test_with_non_empty_with_one_file_and_delete(runner):
+def test_with_non_empty_with_file_and_subfolder_with_delete(runner):
     Path("folder").mkdir()
     Path("folder/file.txt").write_text("I exist.\n")
+    Path("folder/subfolder").mkdir()
+    Path("folder/subfolder/file.txt").write_text("I exist.\n")
 
     result = runner.invoke(cmd, ["folder", "--delete"])
 
@@ -52,6 +54,7 @@ def test_with_non_empty_with_one_file_and_delete(runner):
     assert result.stdout == ""
     assert result.stderr == ""
     assert not Path("folder/file.txt").exists()
+    assert not Path("folder/subfolder").exists()
 
 
 def test_with_non_empty_with_many_files(runner):
