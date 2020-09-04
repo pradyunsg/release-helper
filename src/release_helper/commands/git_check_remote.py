@@ -17,6 +17,10 @@ def cmd(name, urls):
         capture_output=True,
         encoding="utf-8",
     )
+    if result.returncode:
+        click.echo("FATAL: git did not exit cleanly.", err=True)
+        sys.exit(3)
+
     got_urls = result.stdout.rstrip().splitlines()
 
     if not (set(got_urls) & set(urls)):

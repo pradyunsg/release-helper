@@ -1,6 +1,14 @@
 from release_helper.commands.git_check_remote import cmd
 
 
+def test_fails_on_no_repo(runner):
+    result = runner.invoke(cmd, ["upstream"])
+
+    assert result.exit_code == 3
+    assert result.stdout == ""
+    assert result.stderr == "FATAL: Not on an active git repository.\n"
+
+
 def test_fails_on_no_urls(runner, git):
     result = runner.invoke(cmd, ["upstream"])
 
