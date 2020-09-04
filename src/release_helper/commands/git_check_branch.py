@@ -1,6 +1,22 @@
+import subprocess
+import sys
+
 import click
 
 
 @click.command()
-def cmd():
-    raise NotImplementedError()
+@click.argument("name")
+def cmd(name):
+    result = subprocess.run(
+        ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+        capture_output=True,
+        encoding="utf-8",
+    )
+    if result.returncode:
+        click.echo("FATAL: git did not exit cleanly.", err=True)
+        sys.exit(3)
+
+    got = result.stdout.rstrip()
+    if name != got:
+        click.echo(f"Branch name check failed: {name!r} != {got!r}", err=True)
+        sys.exit(1)
