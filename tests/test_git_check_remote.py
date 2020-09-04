@@ -10,8 +10,6 @@ def test_fails_on_no_urls(runner, git):
 
 
 def test_fails_on_missing_remote(runner, git):
-    git("init")
-
     result = runner.invoke(cmd, ["upstream", "https://pradyunsg.me/repo.git"])
 
     assert result.exit_code == 1
@@ -23,7 +21,6 @@ def test_fails_on_missing_remote(runner, git):
 
 
 def test_fails_on_single_url_that_does_not_match(runner, git):
-    git("init")
     git("remote", "add", "upstream", "https://pradyunsg.me/repo.git")
 
     result = runner.invoke(cmd, ["upstream", "https://pradyunsg.me/repo.git"])
@@ -34,7 +31,6 @@ def test_fails_on_single_url_that_does_not_match(runner, git):
 
 
 def test_fails_on_multiple_url_that_do_not_match(runner, git):
-    git("init")
     git("remote", "add", "upstream", "https://pradyunsg.me/repo.git")
 
     result = runner.invoke(cmd, ["upstream", "https://pradyunsg.me/repo.git"])
@@ -45,7 +41,6 @@ def test_fails_on_multiple_url_that_do_not_match(runner, git):
 
 
 def test_succeeds_on_multiple_urls_match(runner, git):
-    git("init")
     git("remote", "add", "upstream", "https://pradyunsg.me/repo.git")
 
     result = runner.invoke(cmd, ["upstream", "https://pradyunsg.me/repo.git"])
@@ -56,7 +51,6 @@ def test_succeeds_on_multiple_urls_match(runner, git):
 
 
 def test_succeeds_on_single_url_match(runner, git):
-    git("init")
     git("remote", "add", "upstream", "https://pradyunsg.me/repo.git")
 
     result = runner.invoke(cmd, ["upstream", "https://pradyunsg.me/repo.git"])
@@ -67,7 +61,6 @@ def test_succeeds_on_single_url_match(runner, git):
 
 
 def test_succeeds_on_single_url_match_from_multiple(runner, git):
-    git("init")
     git("remote", "add", "upstream", "https://pradyunsg.me/repo.git")
     git("remote", "set-url", "--add", "upstream", "https://pradyunsg.me/another.git")
 
