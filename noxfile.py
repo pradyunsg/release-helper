@@ -9,7 +9,7 @@ def lint(session):
     session.run("pre-commit", "run", "--all-files", *session.posargs)
 
 
-@nox.session(python=["3.6", "3.7", "3.8"])
+@nox.session(python=["3.7", "3.8", "3.9"])
 def test(session):
     session.install("flit")
     session.run(

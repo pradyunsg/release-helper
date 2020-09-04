@@ -9,7 +9,7 @@ author = "Pradyun Gedam"
 author-email = "mail@pradyunsg.me"
 home-page = "https://github.com/pradyunsg/release-helper"
 description-file = "README.md"
-requires-python = ">=3.5"
+requires-python = ">=3.7"
 requires = ["click", "packaging"]
 
 [tool.flit.metadata.requires-extra]
