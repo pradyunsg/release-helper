@@ -6,7 +6,7 @@ def test_fails_on_no_repo(runner):
 
     assert result.exit_code == 3
     assert result.stdout == ""
-    assert result.stderr == "FATAL: Not on an active git repository.\n"
+    assert result.stderr == "FATAL: git did not exit cleanly.\n"
 
 
 def test_fails_on_no_urls(runner, git):
