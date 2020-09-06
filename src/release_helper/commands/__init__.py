@@ -5,19 +5,19 @@ import importlib
 import click
 
 commands = [
+    # File system and Markup
     "directory-check-empty",
+    "file-add-heading",
+    "file-change-heading",
     # Git
     "git-check-branch",
     "git-check-working-directory",
-    "git-check-not-a-tag",
     "git-check-remote",
+    "git-check-tag",
     "git-generate-authors",
-    # The most important thing.
+    # Version handling
     "version-check-validity",
     "version-bump",
-    # Related-files' content handling
-    "file-add-heading",
-    "file-change-heading",
 ]
 # TODO: add a test to check that all these commands actually exist.
 
