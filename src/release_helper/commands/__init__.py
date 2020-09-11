@@ -11,7 +11,7 @@ commands = [
     "file-change-heading",
     # Git
     "git-check-branch",
-    "git-check-working-directory",
+    "git-check-clean",
     "git-check-remote",
     "git-check-tag",
     "git-generate-authors",
