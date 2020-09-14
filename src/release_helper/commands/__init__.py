@@ -14,7 +14,6 @@ commands = [
     "git-check-clean",
     "git-check-remote",
     "git-check-tag",
-    "git-generate-authors",
     # Version handling
     "version-check-validity",
     "version-bump",
