@@ -19,7 +19,7 @@ commands = [
 # TODO: add a test to check that all these commands actually exist.
 
 
-class SubpackageMultiCommand(click.MultiCommand):
+class _SubpackageMultiCommand(click.MultiCommand):
     def list_commands(self, ctx):
         # This is the ordered list of the commands.
         return commands
@@ -33,5 +33,6 @@ class SubpackageMultiCommand(click.MultiCommand):
 
 
 def main():
-    cli = SubpackageMultiCommand(name="release=helper", no_args_is_help=True)
+    """Primary entry point from the command line."""
+    cli = _SubpackageMultiCommand(name="release=helper", no_args_is_help=True)
     cli()
