@@ -7,6 +7,7 @@ import click
 @click.command()
 @click.argument("name")
 def cmd(name):
+    """Check current branch's name."""
     result = subprocess.run(
         ["git", "rev-parse", "--abbrev-ref", "HEAD"],
         capture_output=True,

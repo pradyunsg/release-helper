@@ -8,6 +8,7 @@ import click
 @click.argument("name")
 @click.argument("urls", nargs=-1)
 def cmd(name, urls):
+    """Check remote includes given URL(s)."""
     if not urls:
         click.echo("FATAL: Got no URLs.", err=True)
         sys.exit(2)

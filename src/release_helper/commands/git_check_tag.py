@@ -8,6 +8,7 @@ import click
 @click.argument("name")
 @click.option("--exists/--does-not-exist", required=True)
 def cmd(name, exists):
+    """Check that given tag (does not) exist."""
     result = subprocess.run(
         ["git", "show-ref", "--tags", "--quiet", "--verify", "--", f"refs/tags/{name}"],
         capture_output=True,
