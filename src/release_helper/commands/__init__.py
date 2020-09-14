@@ -5,10 +5,8 @@ import importlib
 import click
 
 commands = [
-    # File system and Markup
+    # File system
     "directory-check-empty",
-    "file-add-heading",
-    "file-change-heading",
     # Git
     "git-check-branch",
     "git-check-clean",
