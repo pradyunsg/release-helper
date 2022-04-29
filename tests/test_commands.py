@@ -2,7 +2,7 @@ import sys
 from unittest import mock
 
 import pytest
-from release_helper import commands
+from release_helper import __main__, commands
 
 
 @pytest.mark.parametrize("command", commands.commands)
@@ -18,3 +18,7 @@ def test_main_exposes_all_commands(capsys: pytest.CaptureFixture[str]) -> None:
     result = capsys.readouterr()
     for command in commands.commands:
         assert command in result.out
+
+
+def test_main_from_dunder_main_is_commands_main():
+    assert __main__.main is commands.main

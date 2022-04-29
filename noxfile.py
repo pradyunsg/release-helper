@@ -15,7 +15,11 @@ def lint(session):
 def test(session):
     session.install(".[test]")
 
-    default_args = ["--cov-report", "term", "--cov", "release_helper"]
+    default_args = [
+        "--cov-fail-under=100",
+        "--cov=release_helper",
+        "--cov-report=term",
+    ]
     args = session.posargs or default_args
 
     session.run("pytest", *args)
