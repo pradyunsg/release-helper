@@ -1,18 +1,27 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.flit.metadata]
-module = "release_helper"
-dist-name = "release-helper"
-author = "Pradyun Gedam"
-author-email = "mail@pradyunsg.me"
-home-page = "https://github.com/pradyunsg/release-helper"
-description-file = "README.md"
-requires-python = ">=3.7"
-requires = ["click", "packaging"]
+[project]
+name = "release-helper"
+dynamic = ["version", "description"]
+readme = "README.md"
 
-[tool.flit.metadata.requires-extra]
+requires-python = ">=3.7"
+dependencies = [
+  "click",
+  "packaging",
+]
+authors = [
+  { name = "Pradyun Gedam", email = "mail@pradyunsg.me" },
+]
+
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+]
+license = { file = "LICENSE" }
+
+[project.optional-dependencies]
 test = [
   "pytest",
   "pytest-cov",
@@ -20,5 +29,11 @@ test = [
 ]
 docs = ["sphinx"]
 
-[tool.flit.scripts]
+[project.scripts]
 release-helper = "release_helper.__main__:main"
+
+[project.urls]
+GitHub = "https://github.com/pradyunsg/release-helper"
+
+[tool.flit.module]
+name = "release_helper"
