@@ -16,10 +16,9 @@ commands = [
     "version-check-validity",
     "version-bump",
 ]
-# TODO: add a test to check that all these commands actually exist.
 
 
-class _SubpackageMultiCommand(click.MultiCommand):  # pragma: no cover
+class _SubpackageMultiCommand(click.MultiCommand):
     def list_commands(self, ctx):
         # This is the ordered list of the commands.
         return commands
@@ -32,7 +31,7 @@ class _SubpackageMultiCommand(click.MultiCommand):  # pragma: no cover
         return module.cmd
 
 
-def main():  # pragma: no cover
+def main():
     """Primary entry point from the command line."""
     cli = _SubpackageMultiCommand(name="release=helper", no_args_is_help=True)
     cli()
