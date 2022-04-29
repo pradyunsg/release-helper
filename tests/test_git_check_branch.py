@@ -6,7 +6,7 @@ def test_fails_on_no_repo(runner):
 
     assert result.exit_code == 3
     assert result.stdout == ""
-    assert result.stderr == "FATAL: git did not exit cleanly.\n"
+    assert result.stderr.endswith("FATAL: git did not exit cleanly.\n")
 
 
 def test_fails_when_not_given_branch_name(runner):
@@ -23,8 +23,8 @@ def test_fails_when_branch_has_no_commits(runner, git):
     result = runner.invoke(cmd, ["main"])
 
     assert result.exit_code == 3
-    assert result.stdout == ""
-    assert result.stderr == "FATAL: git did not exit cleanly.\n"
+    assert result.stdout == "HEAD\n"
+    assert result.stderr.endswith("FATAL: git did not exit cleanly.\n")
 
 
 def test_fails_when_branch_does_not_match(runner, git):
