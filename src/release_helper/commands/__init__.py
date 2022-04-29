@@ -19,7 +19,7 @@ commands = [
 # TODO: add a test to check that all these commands actually exist.
 
 
-class _SubpackageMultiCommand(click.MultiCommand):
+class _SubpackageMultiCommand(click.MultiCommand):  # pragma: no cover
     def list_commands(self, ctx):
         # This is the ordered list of the commands.
         return commands
@@ -32,7 +32,7 @@ class _SubpackageMultiCommand(click.MultiCommand):
         return module.cmd
 
 
-def main():
+def main():  # pragma: no cover
     """Primary entry point from the command line."""
     cli = _SubpackageMultiCommand(name="release=helper", no_args_is_help=True)
     cli()
