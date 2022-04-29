@@ -19,6 +19,8 @@ def cmd(name, urls):
         encoding="utf-8",
     )
     if result.returncode:
+        click.echo(result.stdout, nl=False)
+        click.echo(result.stderr, nl=False, err=True)
         click.echo("FATAL: git did not exit cleanly.", err=True)
         sys.exit(3)
 
