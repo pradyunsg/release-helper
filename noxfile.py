@@ -13,10 +13,7 @@ def lint(session):
 
 @nox.session(python=["3.7", "3.8", "3.9"])
 def test(session):
-    session.install("flit")
-    session.run(
-        "flit", "install", "-s", "--deps=production", "--extras", "test", silent=True
-    )
+    session.install(".[test]")
 
     default_args = ["--cov-report", "term", "--cov", "release_helper"]
     args = session.posargs or default_args
@@ -26,11 +23,7 @@ def test(session):
 
 @nox.session
 def docs(session):
-    session.install("flit")
-    session.run(
-        "flit", "install", "-s", "--deps=production", "--extras", "docs", silent=True
-    )
-
+    session.install(".[doc]")
     session.run("sphinx-build", "-b", "html", "docs/", "build/docs")
 
 
@@ -42,8 +35,8 @@ def release(session):
 
     release_version, next_version = session.posargs  # expect exactly 2 arguments!
 
-    session.install("flit", "twine")
-    session.run("flit", "install", "--deps=production", silent=True)
+    session.install("build", "twine")
+    session.install(".")
 
     # Sanity Checks
     session.run("release-helper", "version-check-validity", release_version)
@@ -64,7 +57,7 @@ def release(session):
     )
 
     # Build the package
-    session.run("flit", "build")
+    session.run("python", "-m", "build")
     session.run("twine", "check", *glob.glob("dist/*"))
 
     # Tag the commit
@@ -81,7 +74,7 @@ def release(session):
     session.run("git", "commit", "-m", "Back to development", external=True)
 
     # Push the commits and tag.
-    session.run("git", "push", "origin", "master", release_version, external=True)
+    session.run("git", "push", "origin", "main", release_version, external=True)
 
     # Upload the distributions.
     session.run("twine", "upload", *glob.glob("dist/*"))
