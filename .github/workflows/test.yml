@@ -19,5 +19,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
+      - uses: fregante/setup-git-user@v1
+      - run: git config --global init.defaultBranch main
       - run: pip install nox
       - run: nox -s test-${{ matrix.python }}
