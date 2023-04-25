@@ -37,3 +37,6 @@ GitHub = "https://github.com/pradyunsg/release-helper"
 
 [tool.flit.module]
 name = "release_helper"
+
+[tool.isort]
+profile = "black"
