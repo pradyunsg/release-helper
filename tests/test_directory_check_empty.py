@@ -91,4 +91,4 @@ def test_with_four_directories_with_two_non_empty(runner):
 
     assert result.exit_code == 1
     assert result.stdout == ""
-    assert result.stderr == ("folder-1 is not empty.\n" "folder-3 is not empty.\n")
+    assert result.stderr == ("folder-1 is not empty.\nfolder-3 is not empty.\n")
