@@ -7,19 +7,26 @@ on:
 jobs:
   test:
     name: tests / ${{ matrix.python }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     strategy:
       fail-fast: true
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10"]
-
+        python: ["3.11", "3.12", "3.13", "3.14", "3.15"]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python }}
-      - uses: fregante/setup-git-user@v1
-      - run: git config --global init.defaultBranch main
-      - run: pip install nox
-      - run: nox -s test-${{ matrix.python }}
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python }}
+    - run: "git config --global user.name \"GitHub Actions\"\ngit config --global user.email \"41898282+github-actions[bot]@users.noreply.github.com\""
+    - run: git config --global init.defaultBranch main
+    - run: pipx install nox
+    - run: nox -s test --force-python ${{ matrix.python }}
+    timeout-minutes: 30
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
