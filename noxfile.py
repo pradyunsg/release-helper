@@ -7,11 +7,11 @@ import nox
 
 @nox.session(reuse_venv=True)
 def lint(session):
-    session.install("pre-commit")
-    session.run("pre-commit", "run", "--all-files", *session.posargs)
+    session.install("prek")
+    session.run("prek", "run", "--all-files", *session.posargs)
 
 
-@nox.session(python=["3.7", "3.8", "3.9", "3.10"])
+@nox.session(python=["3.11", "3.12", "3.13", "3.14", "3.15"])
 def test(session):
     session.install(".[test]")
 
@@ -67,7 +67,12 @@ def release(session):
     # Tag the commit
     session.run(
         # fmt: off
-        "git", "tag", release_version, "-m", f"Release {release_version}", "-s",
+        "git",
+        "tag",
+        release_version,
+        "-m",
+        f"Release {release_version}",
+        "-s",
         external=True,
         # fmt: on
     )

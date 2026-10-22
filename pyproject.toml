@@ -7,7 +7,7 @@ name = "release-helper"
 dynamic = ["version", "description"]
 readme = "README.md"
 
-requires-python = ">=3.7"
+requires-python = ">=3.11"
 dependencies = [
   "click",
   "packaging",
@@ -37,6 +37,3 @@ GitHub = "https://github.com/pradyunsg/release-helper"
 
 [tool.flit.module]
 name = "release_helper"
-
-[tool.isort]
-profile = "black"

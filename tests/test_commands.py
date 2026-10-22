@@ -2,6 +2,7 @@ import sys
 from unittest import mock
 
 import pytest
+
 from release_helper import __main__, commands
 
 
@@ -17,7 +18,7 @@ def test_main_exposes_all_commands(capsys: pytest.CaptureFixture[str]) -> None:
 
     result = capsys.readouterr()
     for command in commands.commands:
-        assert command in result.out
+        assert command in result.out + result.err
 
 
 def test_main_from_dunder_main_is_commands_main():

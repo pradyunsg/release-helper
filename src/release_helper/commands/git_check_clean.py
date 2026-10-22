@@ -6,7 +6,9 @@ import click
 
 def _is_clean():
     result = subprocess.run(
-        ["git", "status", "--porcelain"], capture_output=True, encoding="utf-8",
+        ["git", "status", "--porcelain"],
+        capture_output=True,
+        encoding="utf-8",
     )
     return result.stdout.strip() == ""
 

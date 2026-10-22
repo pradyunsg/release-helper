@@ -1,3 +1,4 @@
+import inspect
 import subprocess
 
 from click.testing import CliRunner
@@ -6,7 +7,12 @@ from pytest import fixture
 
 @fixture(scope="function")
 def runner():
-    value = CliRunner(mix_stderr=False)
+    options = (
+        {"mix_stderr": False}
+        if "mix_stderr" in inspect.signature(CliRunner).parameters
+        else {}
+    )
+    value = CliRunner(**options)
     with value.isolated_filesystem():
         yield value
 
