@@ -11,7 +11,7 @@ def lint(session):
     session.run("pre-commit", "run", "--all-files", *session.posargs)
 
 
-@nox.session(python=["3.7", "3.8", "3.9", "3.10"])
+@nox.session(python=["3.11", "3.12", "3.13", "3.14", "3.15"])
 def test(session):
     session.install(".[test]")
 
